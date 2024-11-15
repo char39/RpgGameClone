@@ -13,7 +13,7 @@ public partial class PlayerDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("EnemyAttackBox"))
+        if (other.TryGetComponent(out WeapenDamage damage))
         {
             playerHit = true;
             StartCoroutine(ReturnHit());
@@ -23,7 +23,7 @@ public partial class PlayerDamage : MonoBehaviour
         }
     }
     
-    IEnumerator ReturnHit()
+    private IEnumerator ReturnHit()
     {
         yield return new WaitForSeconds(2f);
         playerHit = false;
@@ -31,7 +31,7 @@ public partial class PlayerDamage : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("EnemyAttackBox"))
+        if (other.TryGetComponent(out WeapenDamage damage))
         {
             playerHit = false;
             HitparticleSystem.Stop();
