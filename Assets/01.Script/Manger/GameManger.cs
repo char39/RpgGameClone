@@ -1,35 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManger : MonoBehaviour
 {
-    public static GameManger G_instance;
+    public static GameManger instance;
 
-    /// <summary>
-    /// º¯¼ö
-    /// </summary>
     public bool gameover = false;
+
     private void Awake()
     {
-        if(G_instance == null)
-        {
-            G_instance = this;
-        }
-        else if(G_instance != null) 
-        {
-            Destroy(G_instance);
-        }
-    }
-    void Start()
-    {
-        
-    }
+        if (instance == null)
+            instance = this;
+        else if (instance != null)
+            Destroy(this);
 
-
-    void Update()
-    {
-        
+        DontDestroyOnLoad(gameObject);
     }
 }

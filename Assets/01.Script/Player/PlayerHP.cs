@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public partial class PlayerHP : MonoBehaviour, IPlayerHealth
 {
-    public Player player;
+    [HideInInspector] public Player player;
 
     void Start()
     {
@@ -11,27 +11,25 @@ public partial class PlayerHP : MonoBehaviour, IPlayerHealth
     }
     void Update()
     {
-        hpimage.fillAmount = hp / maxhp;
-        hptext.text = $"{hp}";
-        if(hp <= 0&& !GameManger.G_instance.gameover)
-        {
+        RefreshUI();
+        if (hp <= 0 && !GameManger.instance.gameover)
             Die();
-        }
-    }
-    void Die()
-    {
-        GameManger.G_instance.gameover = true;
-        player_ani.SetTrigger("Die");
-        player_cap.enabled = false;
-        rb.isKinematic = true;
-    }
-    public void SetHealth(float health)
-    {
-        hp = health;
     }
 
-    public void TakeDamage(float damage)
+    private void RefreshUI()
     {
-        hp -= damage;
+        hpImage.fillAmount = hp / maxhp;
+        hpText.text = $"{hp}";
     }
+
+    private void Die()
+    {
+        GameManger.instance.gameover = true;
+        player.ani.SetTrigger("Die");
+        player.capCol.enabled = false;
+        player.rb.isKinematic = true;
+    }
+
+    public void SetHealth(float health) => hp = health;
+    public void TakeDamage(float damage) => hp -= damage;
 }

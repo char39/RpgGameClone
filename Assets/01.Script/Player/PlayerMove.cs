@@ -2,39 +2,30 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public Player player;
+    [HideInInspector] public Player player;
 
-    Transform Player_pos;
-    Animator Player_Animator;
     Vector3 PlayerMoveMent;
-    PlayerAttack playerAttack;
-    PlayerSkills playerSkills;
-    float Player_WalkSpeed = 5f;
-    
-    
-    void Start()
-    {
+    private readonly float Player_WalkSpeed = 5f;
 
-        Player_pos = transform;
-        Player_Animator = GetComponent<Animator>();
-        playerAttack = GetComponent<PlayerAttack>();
-        playerSkills = GetComponent<PlayerSkills>();
-    }
-    
     void Update()
     {
-        if (playerAttack.isAttacking ==false && !GameManger.G_instance.gameover&&!playerSkills.isSkillings)
+        Move();
+    }
+
+    private void Move()
+    {
+        if (player.Attack.isAttacking == false && !GameManger.instance.gameover && !player.Skills.isSkillings)
         {
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
 
-            PlayerMoveMent = new Vector3(horizontal, 0, vertical).normalized;
+            float scalar = Mathf.Max(Mathf.Abs(horizontal), Mathf.Abs(vertical));
+            PlayerMoveMent = new Vector3(horizontal, 0, vertical).normalized * scalar;
 
-            Player_Animator.SetFloat("SpeedX", PlayerMoveMent.x);
-            Player_Animator.SetFloat("SpeedY", PlayerMoveMent.z);
+            player.ani.SetFloat("SpeedX", PlayerMoveMent.x);
+            player.ani.SetFloat("SpeedY", PlayerMoveMent.z);
 
-            Player_pos.Translate(PlayerMoveMent * Player_WalkSpeed * Time.deltaTime);
+            transform.Translate(Player_WalkSpeed * Time.deltaTime * PlayerMoveMent);
         }
-       
     }
 }

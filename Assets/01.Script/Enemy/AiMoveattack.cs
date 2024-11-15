@@ -32,11 +32,11 @@ public class AiMoveattack : MonoBehaviour
 
     void Update()
     {
-        if (!aihp.isDie&&!GameManger.G_instance.gameover)
+        if (!aihp.isDie&&!GameManger.instance.gameover)
         {
             IsMoveAttack();
         }
-        if (GameManger.G_instance.gameover)
+        if (GameManger.instance.gameover)
         {
             Aianimator.SetBool("Attack", false);
         }

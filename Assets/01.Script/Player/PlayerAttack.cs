@@ -2,7 +2,7 @@ using UnityEngine;
 
 public partial class PlayerAttack : MonoBehaviour
 {
-    public Player player;
+    [HideInInspector] public Player player;
 
     void Start()
     {
@@ -12,31 +12,38 @@ public partial class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (GameManger.G_instance.gameover) return;
-        if (Input.GetMouseButtonDown(0) && !playerDamage.playerHit)
+        Attack();
+    }
+
+    private void Attack()
+    {
+        if (GameManger.instance.gameover) return;
+
+        if (Input.GetMouseButtonDown(0) && !player.Damage.playerHit)
         {
             SwordBox.enabled = true;
             isAttacking = true;
-            Player_Animator.SetBool("AttackCombo", true);
+            player.ani.SetBool("AttackCombo", true);
             lastAttackTime = Time.time;
         }
+
         if (isAttacking)
         {
             if (Time.time - lastAttackTime > comboResetTime)
             {
                 isAttacking = false;
-                Player_Animator.SetBool("AttackCombo", true);
+                player.ani.SetBool("AttackCombo", true);
             }
         }
         else
         {
             isAttacking = false;
             SwordBox.enabled = false;
-            Player_Animator.SetBool("AttackCombo", false);
+            player.ani.SetBool("AttackCombo", false);
         }
     }
 
-    void TwoAttack()
+    private void TwoAttack()
     {
         TwoAttackPar.Play();
     }

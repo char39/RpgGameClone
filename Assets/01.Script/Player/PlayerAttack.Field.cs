@@ -2,11 +2,9 @@ using UnityEngine;
 
 public partial class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] Animator Player_Animator;
-    [SerializeField] ParticleSystem TwoAttackPar;
-    [SerializeField] ParticleSystem ThreeAttackPar;
-    [SerializeField] BoxCollider SwordBox;
-    PlayerDamage playerDamage;
+    internal ParticleSystem TwoAttackPar;
+    internal ParticleSystem ThreeAttackPar;
+    internal BoxCollider SwordBox;
 
     public bool isAttacking = false;
     private float comboResetTime = 0.3f;
@@ -14,9 +12,7 @@ public partial class PlayerAttack : MonoBehaviour
 
     private void GetValue()
     {
-        playerDamage = GetComponent<PlayerDamage>();
-        SwordBox = transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<BoxCollider>();
-        Player_Animator = GetComponent<Animator>();
+        SwordBox = transform.GetComponentInChildren<SwordBoxCol>().SwordBox; // 이 클래스는 원래 Collider을 잡으려고 했던 게임 오브젝트 위치에 있습니다.
         TwoAttackPar = transform.GetChild(2).GetComponent<ParticleSystem>();
         ThreeAttackPar = transform.GetChild(3).GetComponent<ParticleSystem>();
     }

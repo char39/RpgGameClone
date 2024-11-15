@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public partial class Player : MonoBehaviour
 {
     public PlayerHP HP;
     public PlayerMove Move;
@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public PlayerDamage Damage;
     public PlayerAttack Attack;
     public PlayerSkills Skills;
+    // 각 클래스나 변수에 Ctrl + 좌클릭을 해보면 참조하는 곳을 바로 확인 가능.
 
     void Awake()
     {
@@ -26,7 +27,5 @@ public class Player : MonoBehaviour
         Skills.player = this;
     }
 
-
-
-
+    void Start() => GetAllComponents();
 }

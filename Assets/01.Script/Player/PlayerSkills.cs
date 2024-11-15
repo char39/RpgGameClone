@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public partial class PlayerSkills : MonoBehaviour
 {
-    public Player player;
+    [HideInInspector] public Player player;
 
     void Start()
     {
@@ -40,7 +40,7 @@ public partial class PlayerSkills : MonoBehaviour
         isSkillings = true;
         isOneskilling = true;
         oneskilltimerover = Time.time + oneskillTimer;
-        Player_ani.SetTrigger("Skillone");
+        player.ani.SetTrigger("Skillone");
         yield return new WaitForSeconds(0.5f);
         float distanceLevel = 10f;
         Vector3 skilldistance = transform.position + transform.forward * distanceLevel;
@@ -56,7 +56,7 @@ public partial class PlayerSkills : MonoBehaviour
         isTwoskilling = true;
         isSkillings = true;
         twoskilltimerover = twoskilltimerover + twoskillTimer;
-        Player_ani.SetTrigger("Skilltwo");
+        player.ani.SetTrigger("Skilltwo");
         yield return new WaitForSeconds(0.5f);
         float pluesYpos = 1.5f;
         Vector3 skillUppos = transform.position + transform.up * pluesYpos;
@@ -70,7 +70,7 @@ public partial class PlayerSkills : MonoBehaviour
     {
         isSkillings = true;
         ultimatering = true;
-        Player_ani.SetTrigger("Ultimate");
+        player.ani.SetTrigger("Ultimate");
 
         yield return new WaitForSeconds(1.14f);
 

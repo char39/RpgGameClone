@@ -2,16 +2,13 @@ using UnityEngine;
 
 public partial class PlayerDamage : MonoBehaviour
 {
-    ParticleSystem HitparticleSystem;
-    Animator animator;
-    PlayerHP playerhp;
+    internal ParticleSystem HitparticleSystem;
     public bool playerHit;
 
     private void GetValue()
     {
-        animator = GetComponent<Animator>();
-        HitparticleSystem = transform.GetChild(4).GetComponent<ParticleSystem>();
-        playerhp = GetComponent<PlayerHP>();
+        transform.GetChild(4).TryGetComponent(out HitparticleSystem);
+        // HitparticleSystem = transform.GetChild(4).GetComponent<ParticleSystem>();
     }
 
     private void SetValue()

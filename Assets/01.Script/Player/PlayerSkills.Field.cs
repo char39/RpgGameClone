@@ -5,26 +5,25 @@ using UnityEngine.UI;
 
 public partial class PlayerSkills : MonoBehaviour
 {
-    [SerializeField] GameObject skillOne;
-    [SerializeField] GameObject skillTwo;
-    [SerializeField] GameObject ultimatePar;
-    [SerializeField] GameObject ultimateSK;
+    private GameObject skillOne;
+    private GameObject skillTwo;
+    private GameObject ultimatePar;
+    private GameObject ultimateSK;
 
-    [SerializeField] Animator Player_ani;
+    private Image SkillUiimage;
+    private Image TwoSkillUiimage;
 
-    [SerializeField] Image SkillUiimage;
-    [SerializeField] Image TwoSkillUiimage;
+    private Text SkillUiText;
+    private Text TwoSkillUiText;
 
-    [SerializeField] Text SkillUiText;
-    [SerializeField] Text TwoSkillUiText;
+    private ParticleSystem SwordPar;
 
-    [SerializeField] ParticleSystem SwordPar;
+    private List<GameObject> Sk_List;
 
-    [SerializeField] List<GameObject> Sk_List;
-    float oneskillTimer = 20f;
-    float twoskillTimer = 5f;
-    float twoskilltimerover;
-    float oneskilltimerover;
+    private float oneskillTimer = 20f;
+    private float twoskillTimer = 5f;
+    private float twoskilltimerover;
+    private float oneskilltimerover;
     public bool isOneskilling;
     public bool isTwoskilling;
     public bool ultimatering;
@@ -39,13 +38,14 @@ public partial class PlayerSkills : MonoBehaviour
         skillTwo = Resources.Load<GameObject>("Skill/Sleash");
         ultimatePar = Resources.Load<GameObject>("Skill/SkillThree");
         ultimateSK = Resources.Load<GameObject>("Skill/Skeleton");
-        Player_ani = GetComponent<Animator>();
-        SkillUiimage = transform.GetChild(7).GetChild(3).GetChild(0).GetChild(1).GetComponent<Image>();
-        SkillUiText = transform.GetChild(7).GetChild(3).GetChild(0).GetChild(2).GetComponent<Text>();
-        TwoSkillUiimage = transform.GetChild(7).GetChild(3).GetChild(1).GetChild(1).GetComponent<Image>();
-        TwoSkillUiText = transform.GetChild(7).GetChild(3).GetChild(1).GetChild(2).GetComponent<Text>();
-        SwordPar = transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<ParticleSystem>();
-
+        
+        PlayerUI_Skills skills = transform.GetComponentInChildren<PlayerUI_Skills>();
+        SkillUiimage = skills.SkillUiimage;         // SkillUiimage = transform.GetChild(7).GetChild(3).GetChild(0).GetChild(1).GetComponent<Image>();
+        SkillUiText = skills.SkillUiText;           // SkillUiText = transform.GetChild(7).GetChild(3).GetChild(0).GetChild(2).GetComponent<Text>();
+        TwoSkillUiimage = skills.TwoSkillUiimage;   // TwoSkillUiimage = transform.GetChild(7).GetChild(3).GetChild(1).GetChild(1).GetComponent<Image>();
+        TwoSkillUiText = skills.TwoSkillUiText;     // TwoSkillUiText = transform.GetChild(7).GetChild(3).GetChild(1).GetChild(2).GetComponent<Text>();
+        SwordPar = player.Attack.SwordBox.transform.GetChild(0).GetComponent<ParticleSystem>();
+        // SwordPar = transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<ParticleSystem>();
     }
 
     private void SetValue()

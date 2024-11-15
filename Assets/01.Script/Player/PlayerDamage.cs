@@ -3,7 +3,7 @@ using UnityEngine;
 
 public partial class PlayerDamage : MonoBehaviour
 {
-    public Player player;
+    [HideInInspector] public Player player;
 
     void Start()
     {
@@ -17,16 +17,18 @@ public partial class PlayerDamage : MonoBehaviour
         {
             playerHit = true;
             StartCoroutine(ReturnHit());
-            animator.SetTrigger("Hit");
+            player.ani.SetTrigger("Hit");
             HitparticleSystem.Play();
-            playerhp.TakeDamage(5);
+            player.HP.TakeDamage(5);
         }
     }
+    
     IEnumerator ReturnHit()
     {
         yield return new WaitForSeconds(2f);
         playerHit = false;
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("EnemyAttackBox"))
@@ -35,6 +37,4 @@ public partial class PlayerDamage : MonoBehaviour
             HitparticleSystem.Stop();
         }
     }
-
-    
 }
