@@ -12,13 +12,14 @@ public partial class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+        if (GameManger.instance.gameover)
+            return;
         Attack();
+        CheckAttacking();
     }
 
     private void Attack()
     {
-        if (GameManger.instance.gameover) return;
-
         if (Input.GetMouseButtonDown(0) && !player.Damage.playerHit)
         {
             SwordBox.enabled = true;
@@ -26,7 +27,10 @@ public partial class PlayerAttack : MonoBehaviour
             player.ani.SetBool("AttackCombo", true);
             lastAttackTime = Time.time;
         }
+    }
 
+    private void CheckAttacking()
+    {
         if (isAttacking)
         {
             if (Time.time - lastAttackTime > comboResetTime)

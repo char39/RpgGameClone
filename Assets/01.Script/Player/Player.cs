@@ -28,4 +28,21 @@ public partial class Player : MonoBehaviour
     }
 
     void Start() => GetAllComponents();
+
+    // void OnCollisionEnter(Collision other)
+    // {
+    //     if (other.transform.TryGetComponent(out Player player))
+    //     {
+
+    //     }
+    //     if (other.transform.GetComponent<Player>() != null)
+    //     {
+            
+    //     }
+
+    //     // if (other.gameObject.CompareTag("Enemy"))
+    //     // {
+    //     //     Damage.TakeDamage(10);
+    //     // }
+    // }
 }

@@ -14,7 +14,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Move()
     {
-        if (player.Attack.isAttacking == false && !GameManger.instance.gameover && !player.Skills.isSkillings)
+        if (!player.Attack.isAttacking && !GameManger.instance.gameover && !player.Skills.isSkillings)
         {
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
