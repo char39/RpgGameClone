@@ -3,54 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerSkills : MonoBehaviour
+public partial class PlayerSkills : MonoBehaviour
 {
-    [SerializeField] GameObject skillOne;
-    [SerializeField] GameObject skillTwo;
-    [SerializeField] GameObject ultimatePar;
-    [SerializeField] GameObject ultimateSK;
-
-    [SerializeField] Animator Player_ani;
-
-    [SerializeField] Image SkillUiimage;
-    [SerializeField] Image TwoSkillUiimage;
-
-    [SerializeField] Text SkillUiText;
-    [SerializeField] Text TwoSkillUiText;
-
-    [SerializeField] ParticleSystem SwordPar;
-    [SerializeField] PlayerAttack attack;
-
-    [SerializeField] List<GameObject> Sk_List;
-    float oneskillTimer = 20f;
-    float twoskillTimer = 5f;
-    float twoskilltimerover;
-    float oneskilltimerover;
-    public bool isOneskilling;
-    public bool isTwoskilling;
-    public bool ultimatering;
-    public bool isSkillings;
-
-    private List<GameObject> summonedSkulls = new List<GameObject>();
-    private const int maxSkulls = 3;
+    public Player player;
 
     void Start()
     {
-        attack = GetComponent<PlayerAttack>();
-        skillOne = Resources.Load<GameObject>("Skill/SkillOne");
-        skillTwo = Resources.Load<GameObject>("Skill/Sleash");
-        ultimatePar = Resources.Load<GameObject>("Skill/SkillThree");
-        ultimateSK = Resources.Load<GameObject>("Skill/Skeleton");
-        Player_ani = GetComponent<Animator>();
-        SkillUiimage = transform.GetChild(7).GetChild(3).GetChild(0).GetChild(1).GetComponent<Image>();
-        SkillUiText = transform.GetChild(7).GetChild(3).GetChild(0).GetChild(2).GetComponent<Text>();
-        TwoSkillUiimage = transform.GetChild(7).GetChild(3).GetChild(1).GetChild(1).GetComponent<Image>();
-        TwoSkillUiText = transform.GetChild(7).GetChild(3).GetChild(1).GetChild(2).GetComponent<Text>();
-        SwordPar = transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<ParticleSystem>();
-
-        SwordPar.Stop();
-        SkillUiText.enabled = false;
-        TwoSkillUiText.enabled = false;
+        GetValue();
+        SetValue();
     }
 
     void Update()
@@ -112,38 +72,34 @@ public class PlayerSkills : MonoBehaviour
         ultimatering = true;
         Player_ani.SetTrigger("Ultimate");
 
-        yield return new WaitForSeconds(1.14f); // 애니메이션 대기
+        yield return new WaitForSeconds(1.14f);
 
         Vector3 skillup = transform.position+ transform.up * 1.5f;
-        // 플레이어의 현재 방향을 기반으로 소환 위치 계산
-        var snowWould = Instantiate(ultimatePar, transform.position, ultimatePar.transform.rotation); // 플레이어 방향으로 회전 설정
+        var snowWould = Instantiate(ultimatePar, transform.position, ultimatePar.transform.rotation);
         isSkillings = false;
 
-        yield return new WaitForSeconds(2.8f); // 애니메이션 대기
+        yield return new WaitForSeconds(2.8f);
         for (int i = 0; i < maxSkulls; i++)
         {
-            // 랜덤 방향 생성
-            float randomX = Random.Range(-1f, 1f); // X축 랜덤
-            float randomZ = Random.Range(-1f, 1f); // Z축 랜덤
-            Vector3 randomDirection = new Vector3(randomX, 0, randomZ).normalized; // 랜덤 방향 벡터 생성 및 정규화
+            float randomX = Random.Range(-1f, 1f);
+            float randomZ = Random.Range(-1f, 1f);
+            Vector3 randomDirection = new Vector3(randomX, 0, randomZ).normalized;
 
-            // 소환 위치 계산
-            Vector3 skullSpawnPosition = snowWould.transform.position + randomDirection * 2; // 랜덤 방향으로 소환 위치 조정
+            Vector3 skullSpawnPosition = snowWould.transform.position + randomDirection * 2;
 
-            GameObject skull = Instantiate(ultimateSK, skullSpawnPosition, Quaternion.identity); // 랜덤 방향으로 스컬 소환
+            GameObject skull = Instantiate(ultimateSK, skullSpawnPosition, Quaternion.identity);
             summonedSkulls.Add(skull);
-            yield return new WaitForSeconds(2f); // 2초 대기 후 다음 스컬 소환
+            yield return new WaitForSeconds(2f);
         }
 
-        yield return new WaitForSeconds(21f); // 소환된 스컬이 5초 동안 유지
+        yield return new WaitForSeconds(21f);
         foreach (var skull in summonedSkulls)
         {
-            Destroy(skull); // 스컬 삭제
+            Destroy(skull);
         }
-        summonedSkulls.Clear(); // 리스트 초기화
+        summonedSkulls.Clear();
         Destroy(snowWould);
     }
-
 
     IEnumerator UpdateSkillUi()
     {

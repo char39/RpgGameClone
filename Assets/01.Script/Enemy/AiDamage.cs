@@ -1,7 +1,6 @@
 using UnityEngine.AI;
 using UnityEngine;
 using System.Collections;
-using Unity.Mathematics;
 
 public class AiDamage : MonoBehaviour
 {

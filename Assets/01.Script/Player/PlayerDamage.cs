@@ -1,22 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PlayerDamage : MonoBehaviour
+public partial class PlayerDamage : MonoBehaviour
 {
-    ParticleSystem HitparticleSystem;
-    Animator animator;
-    PlayerHP playerhp;
-    public bool playerHit;
+    public Player player;
+
     void Start()
     {
-        animator = GetComponent<Animator>();
-        HitparticleSystem = transform.GetChild(4).GetComponent<ParticleSystem>();
-        HitparticleSystem.Stop();
-        playerhp = GetComponent<PlayerHP>();
+        GetValue();
+        SetValue();
     }
-
 
     private void OnTriggerEnter(Collider other)
     {

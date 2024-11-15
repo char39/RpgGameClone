@@ -1331,7 +1331,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1850,10 +1850,10 @@ MonoBehaviour:
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 1
+  m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1333391620
@@ -18654,6 +18654,7 @@ GameObject:
   - component: {fileID: 8173028715391853730}
   - component: {fileID: 8173028715391853732}
   - component: {fileID: 8173028715391853733}
+  - component: {fileID: 8173028715391853739}
   - component: {fileID: 8173028715391853731}
   - component: {fileID: 8173028715391853734}
   - component: {fileID: 8173028715391853735}
@@ -49829,6 +49830,18 @@ MonoBehaviour:
   isTwoskilling: 0
   ultimatering: 0
   isSkillings: 0
+--- !u!114 &8173028715391853739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3226708360547148898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14f3504db33f4b70be958c9153993ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8271945554697824543
 GameObject:
   m_ObjectHideFlags: 0

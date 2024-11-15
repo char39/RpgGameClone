@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class AiHp : MonoBehaviour,Iaihp
+public class AiHp : MonoBehaviour,IAihp
 {
     Animator animator;
     NavMeshAgent agent;
@@ -57,7 +57,7 @@ public class AiHp : MonoBehaviour,Iaihp
 
     public void SetAttackDamage(float damage)
     {
-        // µ¥¹ÌÁö ºÎºÐ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½
     }
 
     public void SetHealth(float health)

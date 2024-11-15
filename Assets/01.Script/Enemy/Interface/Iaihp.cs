@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Iaihp
+public interface IAihp
 {
-    // Ã¼·ÂÀ» ¼³Á¤ÇÏ´Â ¸Þ¼­µå
+    // Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     void SetHealth(float health);
 
-    // ÇöÀç Ã¼·ÂÀ» °¡Á®¿À´Â ¸Þ¼­µå
+    // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     float GetHealth();
 
-    // µ¥¹ÌÁö¸¦ ¹Þ´Â ¸Þ¼­µå
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     void TakeAttackDamage(float damage);
 
-    // °ø°Ý·Â ¼³Á¤ ¸Þ¼­µå
+    // ï¿½ï¿½ï¿½Ý·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     void SetAttackDamage(float damage);
 
-    // °ø°Ý·Â °¡Á®¿À´Â ¸Þ¼­µå
+    // ï¿½ï¿½ï¿½Ý·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     float GetAttackDamage();
 
     float TakeSkillDamage(float damafge, float slow);

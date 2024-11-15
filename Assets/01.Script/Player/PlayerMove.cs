@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public Player player;
+
     Transform Player_pos;
     Animator Player_Animator;
     Vector3 PlayerMoveMent;
     PlayerAttack playerAttack;
-    PlayerHP playerHP;
     PlayerSkills playerSkills;
     float Player_WalkSpeed = 5f;
     
@@ -17,11 +16,11 @@ public class PlayerMove : MonoBehaviour
     {
 
         Player_pos = transform;
-        playerHP = GetComponent<PlayerHP>();
         Player_Animator = GetComponent<Animator>();
         playerAttack = GetComponent<PlayerAttack>();
         playerSkills = GetComponent<PlayerSkills>();
     }
+    
     void Update()
     {
         if (playerAttack.isAttacking ==false && !GameManger.G_instance.gameover&&!playerSkills.isSkillings)

@@ -1,29 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHP : MonoBehaviour,IPlayerHealth
+public partial class PlayerHP : MonoBehaviour, IPlayerHealth
 {
-  
-    Image hpimage;
-    Text hptext;
-    Animator player_ani;
-    CapsuleCollider player_cap;
-    Rigidbody rb;
-    /// <summary>
-    /// º¯¼ö
-    /// </summary>
-    float hp;
-    float maxhp = 100f;
+    public Player player;
+
     void Start()
     {
-        SetHealth(maxhp);
-        hpimage = transform.GetChild(7).GetChild(1).GetComponent<Image>();
-        hptext = transform.GetChild(7).GetChild(2).GetComponent<Text>();
-        player_ani = GetComponent<Animator>();
-        player_cap = GetComponent<CapsuleCollider>();
-        rb = GetComponent<Rigidbody>();
+        SetValue();
     }
     void Update()
     {
